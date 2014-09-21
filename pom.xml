@@ -22,13 +22,20 @@
             <goals>
               <goal>test</goal>
             </goals>
-            <configuration><!-- http://linsolas.github.io/casperjs-runner-maven-plugin/test-mojo.html -->
-              <casperjsVerbose>true</casperjsVerbose>
-              <enableXmlReports>true</enableXmlReports>
-              <logLeveL>info</logLeveL><!-- http://docs.casperjs.org/en/latest/logging.html -->
-              <testsDir>${basedir}/src/test/app/</testsDir>
-              <targetDir>${basedir}/target/</targetDir>
-              <reportsDir>${basedir}/target/</reportsDir>
+            <configuration>
+              <arguments>
+                <arguments>--log-level=info</arguments>
+                <argument>--verbose</argument>
+                <argument>--web-security=no</argument>
+                <argument>--viewportWidth=1024</argument>
+                <argument>--viewportHeight=768</argument>
+                <argument>--url=http://www.google.hu</argument>
+              </arguments>
+              <xUnit>${basedir}/target/TEST-results.xml</xUnit>
+              <includesPatterns>
+                <includePattern>includes/*.js</includePattern>
+              </includesPatterns>
+              <testsDir>${basedir}/src/test/</testsDir>
             </configuration>
           </execution>
         </executions>
