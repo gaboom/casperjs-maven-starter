@@ -70,11 +70,14 @@ casper.viewportSize = {
     });
   }
   casper.on("resource.error", function(error) {
-    // https://github.com/ariya/phantomjs/tree/master/src/qt/qtbase/src/network/access/qnetworkreply.h
     var logger = log.warn;
-    switch (error.errorCode) {
-      case 5: var logger = log.info; break;
+    var message = "error";
+    switch (error.errorCode) { // https://github.com/ariya/phantomjs/tree/master/src/qt/qtbase/src/network/access/qnetworkreply.h
+      case 5:
+        logger = log.info;
+        message = "canceled";
+        break;
     }
-    logger("Resource error", [].slice.call(arguments));
+    logger("Resource " + message, [].slice.call(arguments));
   });
 })();

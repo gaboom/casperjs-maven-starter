@@ -25,7 +25,7 @@ casper.do = function(suite) {
   var pad = function(a,b){return(1e15+a+"").slice(-b);};
 
   casper.snap = function(name) {
-    var testFile = system.args[TEST_FILE_ARGUMENT_INDEX].match(/^.*\/(Test.+)\.js$/)[1] ; 
+    var testFile = system.args[TEST_FILE_ARGUMENT_INDEX].replace(/\\/g, "/").match(/^.*\/(Test.+)\.js$/)[1] ;
     
     if (testFile === lastTestFile) {
       counter += 1;

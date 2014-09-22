@@ -3,6 +3,11 @@ module.exports = {
     casper.go("/");
   },
   search: function(term) {
+    casper.waitFor(function() {
+      return casper.evaluate(function() {
+        return document.querySelectorAll('form[action="/search"]').length > 0;
+      });
+    });
     casper.then(function() {
       casper.fill('form[action="/search"]', {
         q: term
